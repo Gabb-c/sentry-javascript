@@ -76,9 +76,9 @@ components initializations.
 
 #### Install
 
-Registering a Trace Service is a 3 steps process.
+Registering a Trace Service is a 3 step process.
 
-1. Register and configure `@sentry/tracing` `BrowserTracing` integration, including custom Angular routing
+1. Register and configure the `BrowserTracing` integration from `@sentry/tracing`, including custom Angular routing
    instrumentation:
 
 ```javascript
@@ -117,7 +117,7 @@ import { TraceService } from '@sentry/angular';
 export class AppModule {}
 ```
 
-3. Either require the `TraceService` from inside `AppModule` or use `APP_INITIALIZER` to force instantiate Tracing.
+3. Either require the `TraceService` from inside `AppModule` or use `APP_INITIALIZER` to force-instantiate Tracing.
 
 ```javascript
 @NgModule({
