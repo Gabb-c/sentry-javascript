@@ -38,8 +38,7 @@ export function tracingHandler(): (
     let parentSpanId;
     let sampled;
 
-    // If there is a trace header set, we extract the data from it and set the span on the scope
-    // to be the origin an created transaction set the parent_span_id / trace_id
+    // If there is a trace header set, we extract the data from it (parentSpanId, traceId, and sampling decision)
     if (req.headers && isString(req.headers['sentry-trace'])) {
       const span = Span.fromTraceparent(req.headers['sentry-trace'] as string);
       if (span) {

@@ -26,7 +26,7 @@ import { Scope } from './scope';
  * API compatibility version of this hub.
  *
  * WARNING: This number should only be incresed when the global interface
- * changes a and new methods are introduced.
+ * changes and new methods are introduced.
  *
  * @hidden
  */
@@ -473,7 +473,7 @@ function getHubFromActiveDomain(registry: Carrier): Hub {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     const activeDomain = domain.active;
 
-    // If there no active domain, just return global hub
+    // If there's no active domain, just return global hub
     if (!activeDomain) {
       return getHubFromCarrier(registry);
     }
