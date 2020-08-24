@@ -458,28 +458,31 @@ export function getCurrentHub(): Hub {
 }
 
 /**
- * Try to read the hub from an active domain, fallback to the registry if one doesnt exist
+ * Returns the active domain, if one exists
+ *
+ * @returns The domain, or undefined if there is no active domain
+ */
+export function getActiveDomain(): any | undefined {
+  const sentry = getMainCarrier().__SENTRY__;
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
+  return sentry && sentry.extensions && sentry.extensions.domain && (sentry.extensions.domain as any).active;
+}
+
+/**
+ * Try to read the hub from an active domain, and fallback to the registry if one doesn't exist
  * @returns discovered hub
  */
 function getHubFromActiveDomain(registry: Carrier): Hub {
   try {
-    const property = 'domain';
-    const carrier = getMainCarrier();
-    const sentry = carrier.__SENTRY__;
-    if (!sentry || !sentry.extensions || !sentry.extensions[property]) {
-      return getHubFromCarrier(registry);
-    }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const domain = sentry.extensions[property] as any;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    const activeDomain = domain.active;
+    const activeDomain = getActiveDomain();
 
     // If there's no active domain, just return global hub
     if (!activeDomain) {
       return getHubFromCarrier(registry);
     }
 
-    // If there's no hub on current domain, or its an old API, assign a new one
+    // If there's no hub on current domain, or it's an old API, assign a new one
     if (!hasHubOnCarrier(activeDomain) || getHubFromCarrier(activeDomain).isOlderThan(API_VERSION)) {
       const registryHubTopStack = getHubFromCarrier(registry).getStackTop();
       setHubOnCarrier(activeDomain, new Hub(registryHubTopStack.client, Scope.clone(registryHubTopStack.scope)));
