@@ -15,7 +15,7 @@ import { flush } from './sdk';
 const DEFAULT_SHUTDOWN_TIMEOUT = 2000;
 
 /**
- * Express compatible tracing handler.
+ * Express-compatible tracing handler.
  * @see Exposed as `Handlers.tracingHandler`
  */
 export function tracingHandler(): (
@@ -28,7 +28,7 @@ export function tracingHandler(): (
     res: http.ServerResponse,
     next: (error?: any) => void,
   ): void {
-    // TODO: At this point req.route.path we use in `extractTransaction` is not available
+    // TODO: At this point `req.route.path` (which we use in `extractTransaction`) is not available
     // but `req.path` or `req.url` should do the job as well. We could unify this here.
     const reqMethod = (req.method || '').toUpperCase();
     const reqUrl = req.url;
