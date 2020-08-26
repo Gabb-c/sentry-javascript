@@ -26,7 +26,7 @@ import { Scope } from './scope';
 /**
  * API compatibility version of this hub.
  *
- * WARNING: This number should only be incresed when the global interface
+ * WARNING: This number should only be increased when the global interface
  * changes and new methods are introduced.
  *
  * @hidden

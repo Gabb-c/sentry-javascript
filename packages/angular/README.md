@@ -64,7 +64,7 @@ import { createErrorHandler } from '@sentry/angular';
 export class AppModule {}
 ```
 
-Additionally, `createErrorHandler` accepts a set of options that allows you to configure its behaviour. For more details
+Additionally, `createErrorHandler` accepts a set of options that allows you to configure its behavior. For more details
 see `ErrorHandlerOptions` interface in `src/errorhandler.ts`.
 
 ### Tracing

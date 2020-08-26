@@ -63,7 +63,7 @@ export interface BrowserTracingOptions extends RequestInstrumentationOptions {
 
   /**
    * beforeNavigate is called before a pageload/navigation transaction is created and allows for users
-   * to set custom transaction context. Default behaviour is to return `window.location.pathname`.
+   * to set custom transaction context. Default behavior is to return `window.location.pathname`.
    *
    * If undefined is returned, a pageload/navigation transaction will not be created.
    */
@@ -203,7 +203,7 @@ export class BrowserTracing implements Integration {
     logger.log(`[Tracing] starting ${ctx.op} idleTransaction on scope`);
     const idleTransaction = startIdleTransaction(hub, ctx, idleTimeout, true);
     idleTransaction.registerBeforeFinishCallback((transaction, endTimestamp) => {
-      this._metrics.addPerformanceEntires(transaction);
+      this._metrics.addPerformanceEntries(transaction);
       adjustTransactionDuration(secToMs(maxTransactionDuration), transaction, endTimestamp);
     });
 
